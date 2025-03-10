@@ -1,0 +1,83 @@
+*root {
+  --bg: #000000;
+  --text: #000000;
+  --secondary: #f59e0b;
+  --primary: #2788a5;
+  --coolGray: #9ca3af;
+  --bgForm: #d1d5db;
+  --lightGray: #f3f4f6;
+  --bgLight: #324647;
+  --danger: red;
+}
+
+[data-theme='dark'] {
+  --bg: #303738;
+  --text: #9eafae;
+  --text2: white;
+  --secondary: #f59e0b;
+  --primary: #2788a5;
+  --coolGray: #9ca3af;
+  --bgForm: #04383b;
+  --lightGray: #f3f4f6;
+  --bgLight: #324647;
+  --border: #424241;
+  --bg2: #29393a;
+}
+
+[data-theme='light'] {
+  --border: #dbd9d5;
+  --bg: white;
+  --text: #3b3c3d;
+  --text2: black;
+  --secondary: #f59e0b;
+  --primary: #2788a5;
+  --coolGray: #9ca3af;
+  --bgForm: #1c2b350c;
+  --lightGray: #f3f4f6;
+  --bgLight: #324647;
+  --bg2: #f7f7f7;
+}
+
+/* Darkmode start */
+.dLabel {
+  @apply bg-neutral-500 p-1 flex flex-row w-fit rounded-2xl ml-2;
+}
+.sun {
+  @apply text-[#bba235] rounded-full p-1;
+}
+.moon {
+  @apply text-[#333230]  rounded-full p-1;
+}
+
+.dInput {
+  @apply opacity-0 hidden;
+}
+
+.formstyle {
+  @apply bg-[var(--bg)] shadow max-w-2xl  mx-auto px-6  py-8 rounded-xl flex flex-col gap-4 text-[var(--text)];
+}
+
+.btn1 {
+  @apply hover:bg-[var(--primary)] text-[var(--bgLight)] text-center w-fit px-4 md:px-8 py-[6px] rounded-md font-semibold flex items-center justify-center gap-2  text-lg bg-amber-600 focus:bg-amber-400;
+}
+
+.btn2 {
+  @apply flex flex-row gap-1 py-1 px-2 bg-[var(--bgLight)]  items-center justify-center font-semibold rounded-lg;
+}
+
+.labelStyle {
+  @apply text-[var(--textDark)]  font-semibold text-lg;
+}
+
+.inputStyle {
+  @apply px-4 py-2 text-[var(--text)] bg-[var(--bg2)]  text-base w-2/3 font-[500] outline-none rounded-lg shadow-[var(--text)] shadow;
+}
+
+/* app.css */
+.spinner {
+  @apply border-4 border-t-transparent border-white rounded-full w-6 h-6 animate-spin;
+}
+
+.dashboardLink {
+  @apply px-12  hover:bg-opacity-70 justify-between hover:bg-[var(--bg2)] text-[var(--text)]  hover:text-[var(--text2)] py-4 flex flex-row items-center gap-6;
+}
