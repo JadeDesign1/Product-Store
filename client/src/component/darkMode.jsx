@@ -5,12 +5,10 @@ import '../App.css';
 import { themeChanger } from './product';
 
 const DarkMode = () => {
-  const { themeToggle, dark } = themeChanger();
+  const { themeToggle } = themeChanger();
   const [selectedTheme, setSelectedTheme] = useState(
     localStorage.getItem('selectedTheme') || 'light'
   );
-
-  console.log(dark);
 
   useEffect(() => {
     // Apply the selected theme on component mount

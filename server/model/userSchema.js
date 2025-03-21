@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -16,23 +17,29 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.pre("save", function (next) {
-  if (this.isModified("password")) {
-    bcrypt.hash(this.password, 8, (err, hash) => {
-      if (err) return next(err);
-      this.password = hash;
-      next();
-    });
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  console.log(this.password);
+
+  try {
+    const salt = await bcrypt.genSalt(10); // ✅ Generate salt
+    this.password = await bcrypt.hash(this.password, salt); // ✅ Hash password properly
+    next();
+  } catch (err) {
+    return next(err);
   }
 });
 
 userSchema.methods.comparePassword = async function (password) {
-  if (!password) throw new Error("password is missing, can not compare");
+  if (!password) throw new Error("Password is missing, cannot compare");
+
   try {
     const result = await bcrypt.compare(password, this.password);
+    console.log("Password Match Result:", result); // ✅ Log comparison result
     return result;
   } catch (error) {
-    console.log("error while comparing password", error.message);
+    console.log("Error while comparing password:", error.message);
+    return false; // ✅ Explicitly return false on error
   }
 };
 

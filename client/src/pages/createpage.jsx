@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { Formik } from 'formik';
 import FormInput from '../component/formInput';
 import { toast, ToastContainer } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { IoCloseSharp } from 'react-icons/io5';
 import { useProductStore } from '../component/product';
 
@@ -18,6 +18,7 @@ const validationSchema = yup.object({
 });
 const Createpage = () => {
   const { createProduct } = useProductStore();
+  const navigate = useNavigate();
   const initialValues = {
     name: '',
     price: '',
@@ -33,6 +34,9 @@ const Createpage = () => {
           position: 'top-right',
           autoClose: 3000,
         });
+        setTimeout(() => {
+          navigate('/home');
+        }, 2000);
       }
 
       resetForm({
@@ -70,14 +74,14 @@ const Createpage = () => {
         }) => {
           const { name, price, image } = values;
           return (
-            <>
-              <div className="text-[var(--primary)] tracking-wider pt-[96px] md:pt-[105px]">
-                <h1 className="lg:text-6xl font-bold sm:text-4xl text-xl text-center capitalize">
+            <div className=" pt-[10px]">
+              <div className="text-[var(--text2)] tracking-wider">
+                <h1 className="lg:text-2xl font-bold sm:text-xl text-lg text-center capitalize">
                   create new product
                 </h1>
                 <form
                   onClick={isSubmitting ? null : handleSubmit}
-                  className="px-4 py-5 flex flex-col gap-2 rounded-md mx-auto bg-[var(--bgForm)] mt-12 max-w-3xl relative"
+                  className="px-4 py-5 flex flex-col gap-2 rounded-md mx-auto bg-[var(--bgForm)] mt-4 max-w-2xl relative"
                 >
                   <Link
                     to={'/'}
@@ -113,16 +117,16 @@ const Createpage = () => {
                     type="submit"
                     className={`${
                       isSubmitting
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-[var(--secondary)] text-[var(--bg)] font-bold text-lg'
-                    } text-center px-8 md:py-2 mt-4 rounded-md`}
+                        ? 'cursor-not-allowed'
+                        : 'text-[var(--bg)] font-semibold text-base'
+                    } text-center bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-800 transition-all duration-300 hover:text-white/80 px-8 md:py-2 py-1 mt-4 rounded-md`}
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Submitting...' : 'Add Product'}
                   </button>
                 </form>
               </div>
-            </>
+            </div>
           );
         }}
       </Formik>

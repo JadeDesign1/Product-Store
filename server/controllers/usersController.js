@@ -5,7 +5,6 @@ const CreateUser = async (req, res) => {
   try {
     // Extract user details from the request body
     const { username, email, password } = req.body;
-    console.log(req.body);
 
     // Validate required fields
     if (!username || !email || !password) {
@@ -36,6 +35,7 @@ const CreateUser = async (req, res) => {
     // Respond with the newly created user
     res.status(201).json({
       success: true,
+      message: "sign up successful",
       user: {
         id: newUser._id,
         username: newUser.username,
@@ -75,7 +75,7 @@ const Signin = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: "No user found with the provided email",
+        message: "invalid email",
       });
     }
 
@@ -83,18 +83,23 @@ const Signin = async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({
         success: false,
-        message: "Password incorrect, please try again",
+        message: "invalid password",
       });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.JWT_SECRET || "qwerty12345",
+      {
+        expiresIn: "1d",
+      }
+    );
 
     // Limit the fields of user returned in the response
     const { _id, username, email: userEmail } = user;
     res.status(200).json({
       success: true,
+      message: "login successful",
       user: { id: _id, username, email: userEmail },
       token,
     });

@@ -24,7 +24,7 @@ const validateSignUpUser = [
     .isEmpty()
     .custom((value, { req }) => {
       if (value !== req.body.password) {
-        throw new Error("Both password must be the same");
+        throw new Error("password confirmation failed");
       }
       return true;
     }),
