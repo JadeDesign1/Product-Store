@@ -70,12 +70,12 @@ const Signup = () => {
         return (
           <div className="pageHeadingStyle">
             <ToastContainer />
-            <div className="fixed inset-0 z-0 bg-black/30 flex justify-center items-center">
+            <div className="fixed inset-0 z-0  flex justify-center items-center">
               <form
                 onSubmit={handleSubmit} // ✅ Ensure Formik handles form submission
-                className="px-4 py-4 flex flex-col gap-2 rounded-md mx-auto  bg-[var(--bgForm)]  h-fit text-white/80 mt-12 w-4/5 sm:w-[600px] relative"
+                className="px-4 shadow-sm shadow-[#96b3af] py-4 flex flex-col gap-2 rounded-md mx-auto  bg-[var(--bgForm)]  h-fit text-text mt-12 w-4/5 sm:w-[600px] relative"
               >
-                <h2 className="text-xl lg:text-2xl text-white/80 font-bold pb-2 lg:pb-4">
+                <h2 className="text-xl lg:text-2xl font-bold pb-2 lg:pb-4">
                   Sign Up
                 </h2>
                 <section className="flex flex-col gap-2">
@@ -118,9 +118,9 @@ const Signup = () => {
                     type="submit"
                     className={`${
                       isSubmitting
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-[var(--secondary)] text-[var(--bg)] font-bold text-base'
-                    } text-center px-8 md:py-2 py-1 mt-4 rounded-md`}
+                        ? 'bg-primary/70 cursor-not-allowed'
+                        : 'bg-primary text-text font-bold text-lg'
+                    } text-center px-8 md:py-2 py-1 mt-2 duration-200 hover:bg-primary/70 rounded-md`}
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -130,7 +130,7 @@ const Signup = () => {
                     )}
                   </button>
                 </section>
-                <section className="flex text-base lg:tex-lg pt-4 gap-2 flex-row items-center justify-center">
+                <section className="flex text-base lg:tex-lg pt-2 gap-2 flex-row items-center justify-center">
                   <span>Already have an acount? </span>
                   <Link className="hover:underline pb-1" to={'/auth/login'}>
                     Login

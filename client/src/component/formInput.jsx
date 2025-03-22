@@ -15,7 +15,7 @@ const FormInput = ({ label, name, placeholder, onChange, error, onBlur }) => {
       <div className="relative w-full">
         <input
           type={label === 'password' && !show ? 'password' : 'text'} // ✅ Toggles input type
-          className="outline-none pl-2 bg-transparent border w-full border-gray-600 shadow shadow-neutral-800 font-semibold rounded-sm text-base sm:text-lg lg:text-xl lg:py-2 py-1"
+          className="outline-none pl-2  w-full bg-gray-200  rounded-md text-base lg:py-2 py-1"
           placeholder={placeholder}
           onChange={onChange}
           onBlur={onBlur}

@@ -35,7 +35,7 @@ const Createpage = () => {
           autoClose: 3000,
         });
         setTimeout(() => {
-          navigate('/home');
+          navigate('/');
         }, 2000);
       }
 

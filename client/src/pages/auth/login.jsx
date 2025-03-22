@@ -4,11 +4,11 @@ import * as Yup from 'yup';
 import FormInput from '../../component/formInput';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { useUserStore } from '../../component/product';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
   const navigate = useNavigate(); // ✅ Initialize navigation
-  const { loginUsers } = useUserStore();
+  const { login } = useAuth();
 
   const initialValue = {
     email: '',
@@ -22,7 +22,8 @@ const Login = () => {
 
   const submitHandler = async (values, { setSubmitting, resetForm }) => {
     try {
-      const res = await loginUsers(values);
+      const res = await login(values);
+
       if (res === true) {
         setTimeout(() => {
           navigate('/home'); // ✅ Redirect to /home
@@ -58,12 +59,12 @@ const Login = () => {
         return (
           <div className="pageHeadingStyle">
             <ToastContainer />
-            <div className="fixed inset-0 z-0 bg-black/30 flex justify-center items-center">
+            <div className="fixed inset-0 z-0 flex justify-center items-center">
               <form
                 onSubmit={handleSubmit}
-                className="px-4 py-4 flex flex-col gap-2 rounded-md mx-auto bg-[var(--bgForm)] h-fit text-white/80 mt-12 w-4/5 sm:w-[600px] relative"
+                className="px-4 py-4 flex flex-col gap-2 rounded-md mx-auto shadow-md shadow-[#96b3af] h-fit text-text mt-12 w-4/5 sm:w-[600px] relative "
               >
-                <h2 className="text-xl lg:text-2xl text-white/80 font-bold pb-2 lg:pb-4">
+                <h2 className="text-xl lg:text-2xl text-text font-bold pb-2 lg:pb-4">
                   Login
                 </h2>
                 <section className="flex flex-col gap-2">
@@ -89,9 +90,9 @@ const Login = () => {
                     type="submit"
                     className={`${
                       isSubmitting
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-[var(--secondary)] text-[var(--bg)] font-bold text-lg'
-                    } text-center px-8 md:py-2 py-1 mt-4 rounded-md`}
+                        ? 'bg-primary/70 cursor-not-allowed'
+                        : 'bg-primary text-text font-bold text-lg'
+                    } text-center hover:bg-primary/70 duration-200 px-8 md:py-2 py-1 mt-4 rounded-md`}
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? <span className="spinner"></span> : 'Login'}

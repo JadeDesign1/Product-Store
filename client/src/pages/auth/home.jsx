@@ -11,12 +11,11 @@ const AuthHome = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
-  console.log(products);
 
   return (
-    <div className="max-w-[1600px] min-h-[80vh]  px-4 md:px-0 mx-auto">
+    <div className="max-w-[1600px] min-h-[80vh] pt-12 lg:pt-16 px-4 md:px-0 mx-auto">
       <ToastContainer />
-      <div className="fixed  left-0 right-0 bg-[var(--bg)] py-[4px] z-30">
+      <div className="fixed left-0  right-0 bg-background backdrop-blur-md py-[12px] z-30">
         <h1 className="lg:text-2xl text-center  font-bold sm:text-lg text-base flex items-center justify-center gap-2  uppercase">
           <span>Current Products AuthHomepage</span>
           <SiDrone />

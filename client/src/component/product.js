@@ -120,8 +120,7 @@ export const useProductStore = create((set) => ({
 export const useUserStore = create((set) => ({
   users: [], // ✅ Ensures users is never undefined
   success: null, // ✅ Track success state
-
-  isLogged: false,
+  isAuthenticated: false,
 
   setUsers: (users) => set({ users }),
 
@@ -174,7 +173,9 @@ export const useUserStore = create((set) => ({
     }
   },
 
-  loginUsers: async (loginDetails) => {
+  login: async (loginDetails) => {
+    console.log(loginDetails);
+
     try {
       const res = await axios.post(
         'http://localhost:5000/api/user/sign-in',
@@ -191,7 +192,7 @@ export const useUserStore = create((set) => ({
 
       localStorage.setItem('token', res.data.token);
 
-      set({ users: userInfo || [], success: status, isLogged: true }); // ✅ Ensure users is always an array
+      set({ users: userInfo || [], success: status, isAuthenticated: true }); // ✅ Ensure users is always an array
 
       return status;
     } catch (error) {
@@ -209,7 +210,7 @@ export const useUserStore = create((set) => ({
   signOut: () => {
     setTimeout(() => {
       localStorage.removeItem('token');
-      set({ users: [], success: false, isLogged: false });
+      set({ users: [], success: false, isAuthenticated: false });
     }, 2000);
   },
 
