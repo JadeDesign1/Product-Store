@@ -124,7 +124,7 @@ const Navbar = () => {
             </>
           )}
 
-          <DarkMode />
+        
         </motion.div>
       )}
     </nav>
