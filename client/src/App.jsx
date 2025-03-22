@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './component/navbar';
-import { themeChanger } from './component/product';
 import ProtectedRoute from './component/protectedRoute';
 
 // Lazy load pages
@@ -20,8 +19,6 @@ const LazyLoader = () => (
 );
 
 const App = () => {
-  const { dark } = themeChanger();
-
   return (
     <div
       className={`w-full bg-background overflow-hidden min-h-[100vh] text-text`}

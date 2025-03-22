@@ -1,16 +1,36 @@
 const Product = require("../model/product.model");
 
 const createProduct = async (req, res) => {
-  const { name, price, image } = req.body;
+  const { name, price, image, createdBy } = req.body;
+
+  // Check for missing fields
   if (!name || !price || !image) {
-    return res
-      .status(400)
-      .json({ success: false, message: "All fields are required" });
+    return res.status(400).json({
+      success: false,
+      message: "All fields are required",
+    });
   }
 
+  // Ensure the user is authenticated
+  if (!req.body.createdBy) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized: User information is missing",
+    });
+  }
+
+  console.log(createdBy);
+
   try {
-    const newProduct = { name, price, image };
+    const newProduct = {
+      name,
+      price,
+      image,
+      createdBy,
+    };
+
     const product = await Product.create(newProduct);
+
     res.status(201).json({
       success: true,
       message: "Product created successfully",
@@ -18,7 +38,10 @@ const createProduct = async (req, res) => {
     });
   } catch (error) {
     console.error("Error creating product:", error);
-    res.status(500).json({ success: false, message: "Server error" });
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 };
 

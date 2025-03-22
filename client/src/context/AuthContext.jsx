@@ -8,15 +8,17 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log(isAuthenticated);
 
   // Check if user is authenticated on app load
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    const storedUser = localStorage.getItem('user');
+    if (token && storedUser) {
       setIsAuthenticated(true);
+      setUser(JSON.parse(storedUser));
     } else {
       setIsAuthenticated(false);
+      setUser(null);
     }
     setLoading(false);
   }, []);
@@ -34,10 +36,19 @@ export const AuthProvider = ({ children }) => {
         autoClose: 2000,
       });
 
+      // ✅ Store token and user info in localStorage
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          id: res.data.user._id,
+          username: res.data.user.username,
+          email: res.data.user.email,
+        })
+      );
+
       setIsAuthenticated(true);
       setUser(res.data.user);
-      console.log(user);
 
       return true;
     } catch (error) {

@@ -50,6 +50,7 @@ export const useProductStore = create((set) => ({
       const res = await axios.get('http://localhost:5000/api/product');
 
       const fetchedProducts = res.data.products;
+
       const status = res.data.success;
 
       set({ products: fetchedProducts || [], success: status }); // ✅ Ensure products is always an array

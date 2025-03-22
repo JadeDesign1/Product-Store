@@ -13,6 +13,11 @@ const productSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    createdBy: {
+      _id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+      username: String,
+      email: String,
+    },
   },
   {
     timestamps: true,

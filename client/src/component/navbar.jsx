@@ -4,17 +4,13 @@ import { motion } from 'framer-motion';
 import { CiSquarePlus } from 'react-icons/ci';
 import { MdLocalGroceryStore } from 'react-icons/md';
 import { HiOutlineMenu, HiX } from 'react-icons/hi';
-import DarkMode from './DarkMode';
 import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
 
-  console.log(isAuthenticated); //
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  console.log(isAuthenticated);
 
   const signoutHandler = () => {
     logout();
@@ -73,7 +69,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden text-2xl"
+            className="md:hidden text-2xl text-text"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <HiX /> : <HiOutlineMenu />}
@@ -86,7 +82,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-black text-white flex flex-col space-y-4 px-6 py-4"
+          className="md:hidden bg-background text-white flex flex-col space-y-4 px-6 py-4"
         >
           {isAuthenticated ? (
             <>
@@ -123,8 +119,6 @@ const Navbar = () => {
               </Link>
             </>
           )}
-
-        
         </motion.div>
       )}
     </nav>

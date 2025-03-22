@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { IoCloseSharp } from 'react-icons/io5';
 import { useProductStore } from '../component/product';
+import { useAuth } from '../context/AuthContext';
 
 const validationSchema = yup.object({
   name: yup.string().required('Name is required'),
@@ -18,6 +19,8 @@ const validationSchema = yup.object({
 });
 const Createpage = () => {
   const { createProduct } = useProductStore();
+  const { user } = useAuth();
+  console.log(user);
   const navigate = useNavigate();
   const initialValues = {
     name: '',
@@ -26,8 +29,11 @@ const Createpage = () => {
   };
 
   const submitHandler = async (values, { resetForm, setSubmitting }) => {
+    const newProduct = { ...values, createdBy: { ...user } };
+    console.log(newProduct);
+
     try {
-      const res = await createProduct(values); // ✅ Call Zustand function
+      const res = await createProduct(newProduct); // ✅ Call Zustand function
 
       if (res.success === true) {
         toast.success(`🎉 ${res.success}`, {

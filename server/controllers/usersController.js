@@ -94,9 +94,16 @@ const Signin = async (req, res) => {
         expiresIn: "1d",
       }
     );
-
+    // ✅ Set token as an HTTP-only cookie
+    res.cookie("token", token, {
+      httpOnly: true, // Prevents JavaScript access to cookies
+      secure: process.env.NODE_ENV === "production", // Ensures secure cookies in production
+      sameSite: "Strict", // Prevents CSRF attacks
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+    });
     // Limit the fields of user returned in the response
     const { _id, username, email: userEmail } = user;
+
     res.status(200).json({
       success: true,
       message: "login successful",
