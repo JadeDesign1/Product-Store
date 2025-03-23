@@ -24,7 +24,7 @@ const AuthHome = () => {
 
       {/* Show "No product found" message if success is false */}
 
-      <div className=" pt-12 pb-8 px-4">
+      <div className="pt-[115px] lg:pt-[130px]">
         <ProductContainer />
       </div>
     </div>
