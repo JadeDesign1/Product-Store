@@ -95,7 +95,7 @@ const Login = () => {
                     } text-center hover:bg-primary/70 duration-200 px-8 md:py-2 py-1 mt-4 rounded-md`}
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? <span className="spinner"></span> : 'Login'}
+                    Login
                   </button>
                 </section>
                 <section className="flex text-base lg:tex-lg pt-4 gap-2 flex-row items-center justify-center">

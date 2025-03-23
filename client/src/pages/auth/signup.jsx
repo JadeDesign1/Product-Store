@@ -120,11 +120,7 @@ const Signup = () => {
                     } text-center px-8 md:py-2 py-1 mt-2 duration-200 hover:bg-primary/70 rounded-md`}
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? (
-                      <span className="spinner"></span>
-                    ) : (
-                      <span>Create Account</span>
-                    )}
+                    Create Account
                   </button>
                 </section>
                 <section className="flex text-base lg:tex-lg pt-2 gap-2 flex-row items-center justify-center">

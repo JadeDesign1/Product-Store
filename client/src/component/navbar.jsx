@@ -7,7 +7,7 @@ import { HiOutlineMenu, HiX } from 'react-icons/hi';
 import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, loading } = useAuth();
 
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
