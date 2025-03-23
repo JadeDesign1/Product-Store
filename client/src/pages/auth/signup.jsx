@@ -15,7 +15,7 @@ const Signup = () => {
     confirmPassword: '',
   };
 
-  const { createUser, users } = useUserStore();
+  const { createUser } = useUserStore();
 
   const validateSchema = Yup.object().shape({
     username: Yup.string().required().min(6),
@@ -29,22 +29,19 @@ const Signup = () => {
 
   const submitHandler = async (values, { resetForm, setSubmitting }) => {
     try {
-      await createUser(values); // ✅ Call Zustand function
+      const res = await createUser(values); // ✅ Call Zustand function
+      console.log(res);
 
       resetForm({
         values: { username: '', email: '', password: '', confirmPassword: '' },
       }); // ✅ Clears form after success
-      setTimeout(() => {
-        navigate('/auth/login'); // ✅ Redirect after success
-      }, 2000);
+      if (res.success) {
+        setTimeout(() => {
+          navigate('/auth/login'); // ✅ Redirect after success
+        }, 2000);
+      }
     } catch (error) {
       console.error('Error signing up:', error);
-      if (error.name === 'AxiosError') {
-        toast.error(`❌${error.message}. Please try again.`, {
-          position: 'top-right',
-          autoClose: 3000,
-        });
-      }
     } finally {
       setSubmitting(false);
     }

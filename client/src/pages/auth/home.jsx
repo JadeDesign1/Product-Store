@@ -17,7 +17,7 @@ const AuthHome = () => {
       <ToastContainer />
       <div className="fixed left-0  right-0 bg-background backdrop-blur-md py-[12px] z-30">
         <h1 className="lg:text-2xl text-center  font-bold sm:text-lg text-base flex items-center justify-center gap-2  uppercase">
-          <span>Current Products AuthHomepage</span>
+          <span>Current Products</span>
           <SiDrone />
         </h1>
       </div>

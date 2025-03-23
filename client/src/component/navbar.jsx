@@ -53,13 +53,13 @@ const Navbar = () => {
               <>
                 <Link
                   to="/auth/login"
-                  className="flex items-center gap-2 px-4 py-2 border-2 hover:bg-secondary duration-200 border-secondary/70 bg-stone-600 rounded-lg transition"
+                  className="flex items-center gap-2 px-4 py-2 bg-gradient-to-br  from-primary hover:opacity-70 via-[#27a197] to-secondary duration-200 rounded-lg transition"
                 >
                   <span className="hidden sm:block">Login</span>
                 </Link>
                 <Link
                   to="/auth/signup"
-                  className="flex items-center gap-2 px-4 py-2 border-2 bg-secondary duration-200 border-secondary/70 hover:bg-stone-600 rounded-lg transition"
+                  className="flex items-center gap-2 px-4 py-2 bg-gradient-to-bl from-primary hover:opacity-70 via-[#27a197] to-secondary duration-200 rounded-lg transition"
                 >
                   <span className="hidden sm:block">Sign Up</span>
                 </Link>

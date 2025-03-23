@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const AuthContext = createContext();
-
+const apiUrl = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
@@ -26,10 +26,7 @@ export const AuthProvider = ({ children }) => {
   // Login function
   const login = async (loginDetails) => {
     try {
-      const res = await axios.post(
-        'http://localhost:5000/api/user/sign-in',
-        loginDetails
-      );
+      const res = await axios.post(`${apiUrl}/api/user/sign-in`, loginDetails);
 
       toast.success(`✅ ${res.data.message}! Redirecting...`, {
         position: 'top-right',

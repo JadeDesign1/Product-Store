@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { create } from 'zustand';
 
-const apiUrl = import.meta.env.VITE_BASE_URL || 'http://localhost:5000/';
+const apiUrl = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 
 export const useProductStore = create((set) => ({
   products: [], // ✅ Ensures products is never undefined
@@ -138,7 +138,6 @@ export const useUserStore = create((set) => ({
     try {
       // ✅ Send POST Request
       const res = await axios.post(`${apiUrl}/api/user/sign-up`, newUser);
-      console.log(res);
 
       // alert
       toast.success(`🎉${res.data.message}!`, {
