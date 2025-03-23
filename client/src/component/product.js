@@ -2,6 +2,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { create } from 'zustand';
 
+const apiUrl = import.meta.env.VITE_BASE_URL || 'http://localhost:5000/';
+
 export const useProductStore = create((set) => ({
   products: [], // ✅ Ensures products is never undefined
   success: null, // ✅ Track success state
@@ -16,10 +18,7 @@ export const useProductStore = create((set) => ({
 
     try {
       // ✅ Send POST Request
-      const res = await axios.post(
-        'http://localhost:5000/api/product',
-        newProduct
-      );
+      const res = await axios.post(`${apiUrl}/api/product`, newProduct);
       // alert
       toast.success(`🎉${res.data.message}!`, {
         position: 'top-right',
@@ -47,7 +46,7 @@ export const useProductStore = create((set) => ({
 
   fetchProducts: async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/product');
+      const res = await axios.get(`${apiUrl}/api/product`);
 
       const fetchedProducts = res.data.products;
 
@@ -67,7 +66,7 @@ export const useProductStore = create((set) => ({
   deleteProduct: async (id) => {
     try {
       // ✅ Send POST Request
-      const res = await axios.delete(`http://localhost:5000/api/product/${id}`);
+      const res = await axios.delete(`${apiUrl}/api/product/${id}`);
 
       toast.success(`🎉${res.data.message}!`, {
         position: 'top-right',
@@ -92,7 +91,7 @@ export const useProductStore = create((set) => ({
     try {
       // ✅ Send POST Request
       await axios.patch(
-        `http://localhost:5000/api/product/${updatedProduct._id}`,
+        `${apiUrl}/api/product/${updatedProduct._id}`,
         updatedProduct
       );
 
@@ -138,10 +137,7 @@ export const useUserStore = create((set) => ({
 
     try {
       // ✅ Send POST Request
-      const res = await axios.post(
-        'http://localhost:5000/api/user/sign-up',
-        newUser
-      );
+      const res = await axios.post(`${apiUrl}/api/user/sign-up`, newUser);
       console.log(res);
 
       // alert
@@ -178,10 +174,7 @@ export const useUserStore = create((set) => ({
     console.log(loginDetails);
 
     try {
-      const res = await axios.post(
-        'http://localhost:5000/api/user/sign-in',
-        loginDetails
-      );
+      const res = await axios.post(`${apiUrl}/api/user/sign-in`, loginDetails);
 
       toast.success(`✅ ${res.data.message}! Redirecting...`, {
         position: 'top-right',
@@ -218,7 +211,7 @@ export const useUserStore = create((set) => ({
   deleteUser: async (id) => {
     try {
       // ✅ Send POST Request
-      const res = await axios.delete(`http://localhost:5000/api/user/${id}`);
+      const res = await axios.delete(`${apiUrl}/api/user/${id}`);
 
       toast.success(`🎉${res.data.message}!`, {
         position: 'top-right',
@@ -243,7 +236,7 @@ export const useUserStore = create((set) => ({
     try {
       // ✅ Send POST Request
       await axios.patch(
-        `http://localhost:5000/api/user/${updatedUser._id}`,
+        `${apiUrl}/api/user/sign-up${updatedUser._id}`,
         updatedUser
       );
 

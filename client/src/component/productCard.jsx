@@ -11,7 +11,6 @@ const ProductCard = ({ product }) => {
   const { image, name, price, _id: id, createdBy } = product;
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const { deleteProduct } = useProductStore();
-  console.log(createdBy);
 
   return (
     <div className=" shadow-sm duration-300 transition-all rounded-lg pb-2 overflow-hidden hover:shadow-md hover:shadow-secondary  shadow-secondary bg-[#312d6d1c]">
