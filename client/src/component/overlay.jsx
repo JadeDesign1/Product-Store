@@ -32,9 +32,9 @@ const Overlay = ({ isOpen, onClose, product }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 flex justify-center items-center">
-      <div className="px-4 py-5 flex flex-col gap-2 rounded-md mx-auto bg-[var(--text)] text-white/80 mt-12 w-4/5 sm:w-[550px] relative ">
-        <h2 className="text-2xl lg:text-3xl text-center text-white/80 font-bold pb-4 ">
+    <div className="fixed inset-0 z-50 bg-text/80 flex justify-center items-center">
+      <div className="px-4 py-5 flex flex-col gap-2 rounded-md bg-background mx-auto  text-text mt-12 w-4/5 sm:w-[550px] relative ">
+        <h2 className="text-2xl lg:text-3xl text-center text-text font-bold pb-4 ">
           Update Product
         </h2>
         <section className="flex flex-col gap-2">
