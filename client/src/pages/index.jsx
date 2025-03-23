@@ -7,16 +7,17 @@ const Homepage = () => {
   return (
     <div className="max-w-[1600px] min-h-[100vh] md:px-0 mx-auto">
       <ToastContainer />
-      <div className=" w-full flex flex-col items-center">
-        <div className=" pt-[48px] lg:pt-[60px] pb-4 z-10 w-full fixed ">
-          <h1 className="lg:text-xl text-center font-bold sm:text-lg text-base bg-white/80 backdrop-blur-sm pt-4 mb-4 pb-3 flex items-center justify-center gap-2 uppercase">
-            <span>Current Products</span>
-            <SiDrone />
-          </h1>{' '}
-        </div>
-        <div className="pt-[115px] lg:pt-[130px]">
-          <ProductContainer />
-        </div>
+      <div className="fixed left-0  right-0 bg-background/80 backdrop-blur-md py-[12px] z-30">
+        <h1 className="lg:text-2xl text-center  font-bold sm:text-lg text-base flex items-center   justify-center gap-2  uppercase">
+          <span>Current Products</span>
+          <SiDrone />
+        </h1>
+      </div>
+
+      {/* Show "No product found" message if success is false */}
+
+      <div className="pt-[54px] lg:pt-[62px]">
+        <ProductContainer />
       </div>
     </div>
   );

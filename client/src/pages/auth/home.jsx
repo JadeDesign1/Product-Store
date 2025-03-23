@@ -15,8 +15,8 @@ const AuthHome = () => {
   return (
     <div className="max-w-[1600px] min-h-[80vh] pt-12 lg:pt-16 md:px-0 mx-auto">
       <ToastContainer />
-      <div className="fixed left-0  right-0 bg-background backdrop-blur-md py-[12px] z-30">
-        <h1 className="lg:text-2xl text-center  font-bold sm:text-lg text-base flex items-center justify-center gap-2  uppercase">
+      <div className="fixed left-0  right-0 bg-background/80 backdrop-blur-md py-[12px] z-30">
+        <h1 className="lg:text-2xl text-center  font-bold sm:text-lg text-base flex items-center  justify-center gap-2  uppercase">
           <span>Current Products</span>
           <SiDrone />
         </h1>
@@ -24,7 +24,7 @@ const AuthHome = () => {
 
       {/* Show "No product found" message if success is false */}
 
-      <div className="pt-[115px] lg:pt-[130px]">
+      <div className="pt-[54px] lg:pt-[62px]">
         <ProductContainer />
       </div>
     </div>
